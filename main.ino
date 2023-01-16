@@ -11,7 +11,7 @@ int buttonPinFour = 3 ;
 int helddown = 4 ;
 int on_or_off = 5 ;
 
-char track_array[3][4];
+int track_array[3];
 
 LiquidCrystal lcd(12, 11, 10, 9, 8, 2);
 
@@ -34,27 +34,27 @@ void loop()
 {
   
 
-  track_array[0] = "no_s";
-  track_array[1] = "no_s";
-  track_array[2] = "no_s";
-  track_array[3] = "no_s";
+  track_array[0] = 0;
+  track_array[1] = 0;
+  track_array[2] = 0;
+  track_array[3] = 0;
 
 
   if (A0 = HIGH) 
   { 
-    track_array[0] = "gun1";
+    track_array[0] = 1;
   }
   else if (A1 = HIGH)
   {
-    track_array[1] = "gun2";
+    track_array[1] = 2;
   }
   else if (A2 = HIGH)
   {
-    track_array[2] = "gun3";
+    track_array[2] = 3;
   }
   else if (A3 = HIGH)
   {
-    track_array[3] = "gun4";
+    track_array[3] = 4;
   }
   else
   {
