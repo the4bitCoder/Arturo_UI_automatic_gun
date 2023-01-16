@@ -1,32 +1,45 @@
 #include <SPI.h>
+#include <LiquidCrystal.h>
+#include <SdFat.h>
+#include <SdFatUtil.h>
+#include <SFEMP3Shield.h>
 
-
-int buttonPinOne = 0 ;
-int buttonPinTwo = 0 ;
-int buttonPinThree = 0 ;
-int buttonPinFour = 0 ;
+int buttonPinOne = 6 ;
+int buttonPinTwo = 7 ;
+int buttonPinThree = 2 ;
+int buttonPinFour = 3 ;
+int helddown = 4 ;
+int on_or_off = 5 ;
 
 char track_array[3][4];
 
+LiquidCrystal lcd(12, 11, 10, 9, 8, 2);
+
+SFEMP3Shield MP3player ;
+
 void setup()
 {
-  boolean begin(void)
-  void setVolume(uint8_t left, uint8_t right)
-  pinMode(A0,INPUT);
-  pinMode(A1,INPUT);
-  pinMode(A2,INPUT);
-  pinMode(A3,INPUT);
-  pinMode(A4,INPUT);
-  pinMode(5,INPUT);
+  lcd.begin(16,2);
+  MP3player.begin();
+  MP3player.SetVolume(0,0);
+  pinMode(buttonPinOne,INPUT);
+  pinMode(buttonPinTwo,INPUT);
+  pinMode(buttonPinThree,INPUT);
+  pinMode(buttonPinFour,INPUT);
+  pinMode(helddown,INPUT);
+  pinMode(on_or_off, INPUT);
 }
 
 void loop()
+{
+  
+
   track_array[0] = "no_s";
   track_array[1] = "no_s";
   track_array[2] = "no_s";
   track_array[3] = "no_s";
 
-{
+
   if (A0 = HIGH) 
   { 
     track_array[0] = "gun1";
@@ -48,13 +61,34 @@ void loop()
     lcd("No detecion");
   }
   
+  while (helddown = HIGH)
+  {
+    play(track_array,heldown);
+  }
   
 }
 
 void play(track_array,helddown)
 {
+  if (helddown = LOW)
+  {
+    for (int x = 0;x<4;x++)
+    {
+      MP3player.playTrack(track_array[x])
+    }
+  }
+  else if (helddown = HIGH)
+  {
+    for (int x = 0;x<4;x++)
+    {
+      MP3player.playTrack(track_array[x]+"auto")
+    }
+  }
 }
         
-void lcd(message)
+void lcd(char message)
 {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(message);
 }
