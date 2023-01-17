@@ -33,32 +33,20 @@ void setup()
 void loop()
 {
   
-
-  track_array[0] = 0;
-  track_array[1] = 0;
-  track_array[2] = 0;
-  track_array[3] = 0;
-
-
-  if (A0 = HIGH) 
-  { 
-    track_array[0] = 1;
-  }
-  else if (A1 = HIGH)
+  for (int x = 0;x<4;x++)
   {
-    track_array[1] = 2;
-  }
-  else if (A2 = HIGH)
-  {
-    track_array[2] = 3;
-  }
-  else if (A3 = HIGH)
-  {
-    track_array[3] = 4;
-  }
-  else
-  {
-    lcd("No detecion");
+    if (digitalRead(x)=HIGH)
+    {
+      track_array[x]=x+1
+    }
+    else if(digitalRead(x)=LOW && track_array[x]=x+1)
+    {
+      track_array[x]=0
+    }
+    else
+    {
+      lcd("No detection")
+    }
   }
   
   while (helddown = HIGH)
